@@ -1,0 +1,47 @@
+# **Finding Lane Lines on the Road** 
+
+## Writeup Template
+
+### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
+
+---
+
+**Finding Lane Lines on the Road**
+
+The goals / steps of this project are the following:
+* Make a pipeline that finds lane lines on the road
+* Reflect on your work in a written report
+
+
+[//]: # (Image References)
+
+[image1]: ./examples/grayscale.jpg "Grayscale"
+
+---
+
+### Reflection
+
+### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+
+My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I blurred the image using gaussian blur algorithm. I then used canny edge algorith to detect the edges, then i selected the region of my interest in the image following which , i drew line using hough algoeithm in the region of interest and then pasting that lines on the original image.
+
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by first calculating the slope, constant and length of all the detected lines on the left side and right side by filtering according to positive and negative slopes.After that I took a weighted average on both side to get slope and constant for a single left lane and right lane. Then I drew that line using the edge values for y axis and the calculated slope and constant of left and right line. 
+
+If you'd like to include images to show how the pipeline works, here is how to include an image: 
+
+![alt text][image1]
+
+
+### 2. Identify potential shortcomings with your current pipeline
+
+
+One potential shortcoming would be what would happen when sharp curves comes.
+
+Another shortcoming could be when there is a sharp change in the hsv values in a video ( like an image in the sun)
+
+
+### 3. Suggest possible improvements to your pipeline
+
+A possible improvement would be to improve line detection algorithm and having a better averga slope and constant
+
+Another potential improvement could be to to use hsv filters in addition for line detection in order to avoid misdetection of lanes.
